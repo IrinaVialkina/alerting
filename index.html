@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Тести · система оповіщення</title>
+<!-- Те саме, що npm test, але в браузері: тести з tests/ запускаються під час кожного завантаження сторінки. -->
+<script type="importmap">
+{ "imports": { "vitest": "./runner.js" } }
+</script>
+<style>
+  body { font: 16px/1.5 ui-monospace, Menlo, Consolas, monospace; margin: 1.5rem; background: #111; color: #ddd; }
+  .pass { color: #4ade80; } .fail { color: #f87171; } .msg { color: #fca5a5; margin: 0 0 .5rem 2rem; white-space: pre-wrap; }
+  .file { margin-top: 1rem; color: #aaa; } .summary { margin-top: 1.5rem; font-weight: bold; }
+  button { font: inherit; padding: .3rem 1rem; }
+</style>
+</head>
+<body>
+<button onclick="location.reload()">Запустити тести ще раз</button>
+<div id="results">Тести запускаються…</div>
+<script type="module">
+  import { run, render } from './runner.js';
+  // Тести заняття і тести всіх карток: запускаються ті файли, які лежать у tests/.
+  const names = ['alerts', '01-medium', '02-letter-case', '03-empty-text', '04-mark-sent', '05-status',
+    '06-count-by-level', '07-pending', '08-list', '09-short', '10-find', '11-summary', '12-same'];
+  render(await run(names), document.getElementById('results'));
+</script>
+</body>
+</html>
