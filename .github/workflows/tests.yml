@@ -1,0 +1,20 @@
+# Запускає всі тести на GitHub після кожного push у будь-яку гілку і для кожного pull request.
+# Зелена позначка ✓ біля коміту чи pull request означає, що на цьому коді пройшли всі тести,
+# червона ✗ — що якийсь тест не пройшов (подробиці: вкладка Actions або Details біля позначки).
+name: Тести
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx vitest run
