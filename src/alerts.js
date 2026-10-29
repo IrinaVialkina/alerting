@@ -2,7 +2,7 @@
 // Функції, які ми написали разом на занятті 3. Що кожна з них обіцяє, описують тести
 // в tests/alerts.spec.js.
 
-const LEVELS = ['low', 'high'];
+const LEVELS = ['low', 'medium', 'high'];
 
 export function formatAlert(alert) {
   return `[${alert.level}] ${alert.text}`;
